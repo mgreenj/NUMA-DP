@@ -264,6 +264,25 @@ int ndp_bind_worker_node(int node)
     return ndp_bind_thread_to_node(node);
 }
 
+
+static void ndp_allocate_fixed_blocks(unsigned int a, unsigned int b, unsigned int c)
+{
+    //
+    // variables a, b, and c allow an operator to specify the number
+    // of blocks in each category desired; the size block for a, b, and c
+    // are predetermined and nonnegotiable.
+    //
+    int tracing;
+    int active_numa = SOME_FUNC_TO_ACTIVE_NUMA() // TODO
+#if defined(TRACE_ALLOCATION)
+    tracing = 1;
+#else
+    tracing = 0;
+#endif
+
+    void *a_span = ndp_malloc(A_SPAN, a, active_numa, tracing);
+}
+
 /** 
  *          IMPORTANT NOTE
  * 
